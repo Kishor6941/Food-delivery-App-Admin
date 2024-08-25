@@ -3,6 +3,7 @@ import "./AddItem.css";
 import { assets } from "../../assets/assets";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { AdminAPI } from "../../constant/APIConstant";
 const AddItem = () => {
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
@@ -12,7 +13,6 @@ const AddItem = () => {
     category: "Salad",
   });
 
-  const API_URL = "http://localhost:4000";
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -31,7 +31,7 @@ const AddItem = () => {
     formData.append("category", data.category);
     formData.append("image", image);
 
-    const response = await axios.post(`${API_URL}/api/food/add`, formData);
+    const response = await axios.post(`${AdminAPI}/api/food/add`, formData);
     if (response?.data?.success) {
       setData({
         name: "",
