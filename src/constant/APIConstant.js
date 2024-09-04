@@ -1,3 +1,3 @@
-export const APIConstant = {
-    AdminAPI : 'http://localhost:4000'
+export const APIURL = {
+    AdminAPI : "http://localhost:4000"
 }

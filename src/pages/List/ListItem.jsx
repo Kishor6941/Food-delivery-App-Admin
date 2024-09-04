@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./ListItem.css";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { AdminAPI } from "../../constant/APIConstant";
+import { APIURL } from "../../constant/APIConstant";
 const ListItem = () => {
   const [list, setList] = useState([]);
 
   const fetchList = async () => {
-    const response = await axios.get(`${AdminAPI}/api/food/list`);
+    const response = await axios.get(`${APIURL.AdminAPI}/api/food/list`);
     if (response?.data?.success) {
       setList(response?.data?.data);
     } else {
@@ -16,7 +16,7 @@ const ListItem = () => {
   };
 
   const removeFood = async (foodId) => {
-    const response = await axios.post(`${AdminAPI}/api/food/remove`, {
+    const response = await axios.post(`${APIURL.AdminAPI}/api/food/remove`, {
       id: foodId,
     });
     if (response.data?.success) {
@@ -45,7 +45,7 @@ const ListItem = () => {
         {list.map((item, index) => {
           return (
             <div key={index} className="list-table-format">
-              <img src={`${API_URL}/images/` + item.image} alt="" />
+              <img src={`${APIURL.AdminAPI}/images/` + item.image} alt="" />
               <p>{item?.name}</p>
               <p>{item?.category}</p>
               <p>${item?.price}</p>
